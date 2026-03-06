@@ -64,11 +64,11 @@ Each agent gets:
 ### 3. Dispatch in Parallel
 
 ```typescript
-// In Claude Code / AI environment
-Task("Fix agent-tool-abort.test.ts failures")
-Task("Fix batch-completion-behavior.test.ts failures")
-Task("Fix tool-approval-race-conditions.test.ts failures")
-// All three run concurrently
+// In Codex CLI: spawn one agent per independent domain
+const a1 = spawn_agent("Fix agent-tool-abort.test.ts failures");
+const a2 = spawn_agent("Fix batch-completion-behavior.test.ts failures");
+const a3 = spawn_agent("Fix tool-approval-race-conditions.test.ts failures");
+wait([a1, a2, a3]); // run concurrently and collect results
 ```
 
 ### 4. Review and Integrate

@@ -13,7 +13,19 @@ Enable superpowers skills in Codex via native skill discovery. Just clone and sy
    git clone https://github.com/obra/superpowers.git ~/.codex/superpowers
    ```
 
-2. **Create the skills symlink:**
+2. **Install the skills link (recommended script):**
+
+   **macOS / Linux**
+   ```bash
+   bash ~/.codex/superpowers/.codex/install.sh
+   ```
+
+   **Windows (PowerShell)**
+   ```powershell
+   powershell -ExecutionPolicy Bypass -File "$env:USERPROFILE\.codex\superpowers\.codex\install.ps1"
+   ```
+
+   **Manual fallback**
    ```bash
    mkdir -p ~/.agents/skills
    ln -s ~/.codex/superpowers/skills ~/.agents/skills/superpowers
@@ -26,6 +38,13 @@ Enable superpowers skills in Codex via native skill discovery. Just clone and sy
    ```
 
 3. **Restart Codex** (quit and relaunch the CLI) to discover the skills.
+
+## Codex CLI Tool Mapping
+
+Superpowers skill text may mention generic patterns. In Codex CLI, use:
+- Task/checklist tracking: `update_plan`
+- Parallel specialist agents: `spawn_agent` + `wait`
+- Skill usage: read matching `SKILL.md` from discovered skill folders before acting
 
 ## Migrating from old bootstrap
 

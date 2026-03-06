@@ -24,7 +24,19 @@ Fetch and follow instructions from https://raw.githubusercontent.com/obra/superp
    git clone https://github.com/obra/superpowers.git ~/.codex/superpowers
    ```
 
-2. Create the skills symlink:
+2. Install the skills link:
+
+   **macOS / Linux (recommended)**
+   ```bash
+   bash ~/.codex/superpowers/.codex/install.sh
+   ```
+
+   **Windows (recommended)**
+   ```powershell
+   powershell -ExecutionPolicy Bypass -File "$env:USERPROFILE\.codex\superpowers\.codex\install.ps1"
+   ```
+
+   **Manual fallback**
    ```bash
    mkdir -p ~/.agents/skills
    ln -s ~/.codex/superpowers/skills ~/.agents/skills/superpowers
@@ -50,6 +62,13 @@ Codex has native skill discovery — it scans `~/.agents/skills/` at startup, pa
 ```
 
 The `using-superpowers` skill is discovered automatically and enforces skill usage discipline — no additional configuration needed.
+
+## Codex Tool Mapping
+
+When Superpowers asks for workflow primitives, use Codex-native tools:
+- checklist/todo tracking -> `update_plan`
+- parallel specialist workers -> `spawn_agent` and `wait`
+- skill invocation -> read the matching `SKILL.md` and follow it before coding
 
 ## Usage
 
