@@ -53,15 +53,15 @@ In Cursor Agent chat, install from marketplace:
 
 ### Codex
 
+Codex-facing skill source-of-truth has moved to the separate `codex-skills` repository.
+
 Tell Codex:
 
 ```
 Fetch and follow instructions from https://raw.githubusercontent.com/obra/superpowers/refs/heads/main/.codex/INSTALL.md
 ```
 
-Manual script install is also available after cloning:
-- macOS/Linux: `bash ~/.codex/superpowers/.codex/install.sh`
-- Windows: `powershell -ExecutionPolicy Bypass -File "$env:USERPROFILE\.codex\superpowers\.codex\install.ps1"`
+The redirect explains how to use `codex-skills/runtime/skills` as the single Codex runtime target.
 
 **Detailed docs:** [docs/README.codex.md](docs/README.codex.md)
 

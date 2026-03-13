@@ -1,6 +1,6 @@
 # Installing Superpowers for Codex
 
-Enable superpowers skills in Codex via native skill discovery. Just clone and symlink.
+Codex-facing skill source-of-truth has moved to the separate `codex-skills` repository. This file remains as a redirect.
 
 ## Prerequisites
 
@@ -8,36 +8,10 @@ Enable superpowers skills in Codex via native skill discovery. Just clone and sy
 
 ## Installation
 
-1. **Clone the superpowers repository:**
-   ```bash
-   git clone https://github.com/obra/superpowers.git ~/.codex/superpowers
-   ```
-
-2. **Install the skills link (recommended script):**
-
-   **macOS / Linux**
-   ```bash
-   bash ~/.codex/superpowers/.codex/install.sh
-   ```
-
-   **Windows (PowerShell)**
-   ```powershell
-   powershell -ExecutionPolicy Bypass -File "$env:USERPROFILE\.codex\superpowers\.codex\install.ps1"
-   ```
-
-   **Manual fallback**
-   ```bash
-   mkdir -p ~/.agents/skills
-   ln -s ~/.codex/superpowers/skills ~/.agents/skills/superpowers
-   ```
-
-   **Windows (PowerShell):**
-   ```powershell
-   New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.agents\skills"
-   cmd /c mklink /J "$env:USERPROFILE\.agents\skills\superpowers" "$env:USERPROFILE\.codex\superpowers\skills"
-   ```
-
-3. **Restart Codex** (quit and relaunch the CLI) to discover the skills.
+1. Clone or open your local `codex-skills` repository.
+2. Rebuild `codex-skills/runtime/skills`.
+3. Ensure `~/.codex/skills` points to that runtime overlay.
+4. Restart Codex.
 
 ## Codex CLI Tool Mapping
 
@@ -67,15 +41,11 @@ If you installed superpowers before native skill discovery, you need to:
 ls -la ~/.agents/skills/superpowers
 ```
 
-You should see a symlink (or junction on Windows) pointing to your superpowers skills directory.
+You should see the unified Codex runtime skills directory exposed from `codex-skills`.
 
 ## Updating
 
-```bash
-cd ~/.codex/superpowers && git pull
-```
-
-Skills update instantly through the symlink.
+Update `codex-skills`, not this repository, when you want to change Codex skills.
 
 ## Uninstalling
 

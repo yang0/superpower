@@ -1,14 +1,10 @@
 # Superpowers for Codex
 
-Guide for using Superpowers with OpenAI Codex via native skill discovery.
+Guide for the Superpowers workflow model in Codex. The Codex-facing skill source-of-truth now lives in the separate `codex-skills` repository.
 
 ## Quick Install
 
-Tell Codex:
-
-```
-Fetch and follow instructions from https://raw.githubusercontent.com/obra/superpowers/refs/heads/main/.codex/INSTALL.md
-```
+Use `codex-skills/runtime/skills` as the single Codex runtime target.
 
 ## Manual Installation
 
@@ -19,30 +15,10 @@ Fetch and follow instructions from https://raw.githubusercontent.com/obra/superp
 
 ### Steps
 
-1. Clone the repo:
-   ```bash
-   git clone https://github.com/obra/superpowers.git ~/.codex/superpowers
-   ```
-
-2. Install the skills link:
-
-   **macOS / Linux (recommended)**
-   ```bash
-   bash ~/.codex/superpowers/.codex/install.sh
-   ```
-
-   **Windows (recommended)**
-   ```powershell
-   powershell -ExecutionPolicy Bypass -File "$env:USERPROFILE\.codex\superpowers\.codex\install.ps1"
-   ```
-
-   **Manual fallback**
-   ```bash
-   mkdir -p ~/.agents/skills
-   ln -s ~/.codex/superpowers/skills ~/.agents/skills/superpowers
-   ```
-
-3. Restart Codex.
+1. Clone or open the `codex-skills` repository.
+2. Rebuild the runtime overlay from `codex-skills/scripts/rebuild_runtime_skills_overlay.ps1`.
+3. Ensure `~/.codex/skills` points to `codex-skills/runtime/skills`.
+4. Restart Codex.
 
 ### Windows
 
@@ -55,10 +31,10 @@ cmd /c mklink /J "$env:USERPROFILE\.agents\skills\superpowers" "$env:USERPROFILE
 
 ## How It Works
 
-Codex has native skill discovery — it scans `~/.agents/skills/` at startup, parses SKILL.md frontmatter, and loads skills on demand. Superpowers skills are made visible through a single symlink:
+Codex has native skill discovery. In this environment, the runtime view is provided through the `codex-skills` overlay:
 
 ```
-~/.agents/skills/superpowers/ → ~/.codex/superpowers/skills/
+~/.codex/skills/ → <codex-skills>/runtime/skills/
 ```
 
 The `using-superpowers` skill is discovered automatically and enforces skill usage discipline — no additional configuration needed.
